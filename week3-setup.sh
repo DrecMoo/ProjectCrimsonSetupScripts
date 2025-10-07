@@ -120,7 +120,7 @@ done
 
 # Hide the flag in a random location
 random_dir=$(ls -d dir_* | shuf -n 1)
-echo "flag{found_the_needle_in_the_haystack}" > "$random_dir/secret_flag.txt"
+echo "pcctf{found_the_needle_in_the_haystack}" > "$random_dir/secret_flag.txt"
 
 cd ..
 
