@@ -211,7 +211,7 @@ done
 shuf words.txt -o words.txt
 
 # Hide the flag as a word that appears exactly once
-echo "flag{unique_word_found}" >> words.txt
+echo "pcctf{un1qu3_w0rd_f0und}" >> words.txt
 shuf words.txt -o words.txt
 
 cd ..

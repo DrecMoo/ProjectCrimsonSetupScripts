@@ -33,3 +33,33 @@
 | sort           | [rows of output]                   | "-n" Do numerical instead of alphabetical sort<br><br>"-r" Do reverse/descending order                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Sorts rows of output. Default is string sort in ascending order                                                         |
 | uniq           | [rows of output]                   | "-c" Show the number of occurrences                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Show unique occurrences of strings. Must be combined with sort, as uniq only looks for matches immediately above/below. |
 | find           | [path] [options] [tests] [actions] | Options:<br>"-name" search by name <br>"-iname" search by name (case insensitive)<br><br>"-type" filetype (tests: f for files, d for directories, l for symbolic links)<br><br>"-size" filesize (test: [number][denom] (opt +/- prefix for gt/lt). Ex: +40M for files greater than 40MB<br><br>"-mtime" last modified time (test: [number] (opt +/- prefix for gt/lt)<br>"-atime" last accessed time (test: (+/-) [number])<br>"-ctime" last changed time (test: (+/-) [number])<br>***Note that mtime, atime, and ctime use days. mmin, amin, and cmin can be used to specify minute units<br><br>"-perm" file permissions (test: [octal permissions] (no prefix specifies exact permissions match. / prefix specifies "any of these bits." - prefix specifies "all of these bits.") | Find files that match given conditions                                                                                  |
+
+
+### Awk
+Awk is a powerful text processing language that reads files line-by-line, automatically splits each line into fields, and lets you filter, slice, and analyze the data with rule-based logic. Awk can be used in place of most of the above commands
+
+#### Basic Usage:
+awk 'pattern {action}' filename
+
+#### Fields
+awk is best used on files with consistent tabular format where rows are delimited by newline characters and columns are delimited by spaces. Using this format, awk can access fields consistently by using a 1-based column index. For example, $1 would return the data, $2 the time, etc. $0 is a special index that will return the whole line. 
+Ex:
+Date Time User Action
+1/1/25 00:00 bob login
+1/1/25 00:03 bob modify
+1/1/25 00:05 bob logout
+
+**Note -F flag can be used to set the column delimiter
+For CSV files, use awk -F ',' ...
+
+#### Actions 
+The main action used with awk is print, which prints to the terminal
+ex: awk '{print $1 $3}' file.txt; prints the first and third item in each row of file.txt
+
+#### Patterns
+Patterns can be applied to awk statements to filter which lines the actions are applied to. Note that they are case-sensitive.
+Examples: awk '/user/ {print $0}' log.txt; Prints all lines that contain user
+'/^user/' all lines that start with "user"
+'/user$/' all lines that end with "user"
+'/ 4[0-9]{2} /' all lines that contain 400-499
+'$2 ~ /POST|GET/' where field 2 == "POST" or "GET" 
