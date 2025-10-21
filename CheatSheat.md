@@ -60,9 +60,9 @@ ex: awk '{print $1 $3}' file.txt; prints the first and third item in each row of
 Patterns can be applied to awk statements to filter which lines the actions are applied to. Note that they are case-sensitive.
 Examples: 
 ```
-awk '/user/ {print $0}' log.txt; Prints all lines that contain user
-'/^user/' all lines that start with "user"
-'/user$/' all lines that end with "user"
-'/ 4[0-9]{2} /' all lines that contain 400-499
-'$2 ~ /POST|GET/' where field 2 == "POST" or "GET" 
+awk '/user/ {print $0}' log.txt; #Prints all lines that contain user
+'/^user/' # all lines that start with "user"
+'/user$/' # all lines that end with "user"
+'/ 4[0-9]{2} /' # all lines that contain 400-499
+'$2 ~ /POST|GET/' # where field 2 == "POST" or "GET" 
 ```
